@@ -1,0 +1,24 @@
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
+using System.Collections.Generic;
+
+namespace Com.App.Web.Migrations
+{
+    public partial class BaseUserInit : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.AddColumn<string>(
+                name: "Password",
+                table: "BASE_USER",
+                nullable: true);
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropColumn(
+                name: "Password",
+                table: "BASE_USER");
+        }
+    }
+}

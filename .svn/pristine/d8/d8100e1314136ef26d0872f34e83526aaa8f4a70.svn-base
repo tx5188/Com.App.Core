@@ -1,0 +1,53 @@
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
+using System.Collections.Generic;
+
+namespace Com.App.Web.Migrations
+{
+    public partial class MyFirstMigration : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.AddColumn<int>(
+                name: "DeleteFlag",
+                table: "BASE_USER",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.AddColumn<int>(
+                name: "DeptId",
+                table: "BASE_USER",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Memo",
+                table: "BASE_USER",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "UserName",
+                table: "BASE_USER",
+                nullable: true);
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropColumn(
+                name: "DeleteFlag",
+                table: "BASE_USER");
+
+            migrationBuilder.DropColumn(
+                name: "DeptId",
+                table: "BASE_USER");
+
+            migrationBuilder.DropColumn(
+                name: "Memo",
+                table: "BASE_USER");
+
+            migrationBuilder.DropColumn(
+                name: "UserName",
+                table: "BASE_USER");
+        }
+    }
+}

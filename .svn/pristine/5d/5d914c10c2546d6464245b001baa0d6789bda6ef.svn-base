@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Com.App.Model.Base.BaseUser>
+    @{ ViewData["Title"] = "About"; }
+    <h2>@ViewData["Title"]</h2>
+    <h3>@ViewData["Message"]</h3>
+
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>用户名</th> 
+        </tr>
+
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem =>item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+        </tr>
+        }
+    </table>

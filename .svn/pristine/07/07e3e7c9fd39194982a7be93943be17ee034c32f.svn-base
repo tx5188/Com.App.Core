@@ -1,0 +1,7 @@
+常用命令
+1、增加包
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer -V 2.0.0
+2、编译发布
+dotnet publish --framework netcoreapp2.0 --output "E:\Com.App.Core\OutPut"--configuration Release
+3、生成sln文件
+dotnet new sln

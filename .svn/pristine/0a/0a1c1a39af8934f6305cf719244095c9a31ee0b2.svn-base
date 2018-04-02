@@ -1,0 +1,3 @@
+@using Com.App.Web
+@using Com.App.Web.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

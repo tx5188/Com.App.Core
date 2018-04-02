@@ -1,0 +1,12 @@
+E:\Com.App.Core\Com.App.Web
+--output-path=obj\Release\netcoreapp2.0\
+--application-name=Com.App.Web
+--content-root=E:\Com.App.Core\Com.App.Web
+--file=E:\Com.App.Core\Com.App.Web\Views\Home\About.cshtml
+--file=E:\Com.App.Core\Com.App.Web\Views\Home\Contact.cshtml
+--file=E:\Com.App.Core\Com.App.Web\Views\Home\Index.cshtml
+--file=E:\Com.App.Core\Com.App.Web\Views\Shared\Error.cshtml
+--file=E:\Com.App.Core\Com.App.Web\Views\Shared\_Layout.cshtml
+--file=E:\Com.App.Core\Com.App.Web\Views\Shared\_ValidationScriptsPartial.cshtml
+--file=E:\Com.App.Core\Com.App.Web\Views\_ViewImports.cshtml
+--file=E:\Com.App.Core\Com.App.Web\Views\_ViewStart.cshtml

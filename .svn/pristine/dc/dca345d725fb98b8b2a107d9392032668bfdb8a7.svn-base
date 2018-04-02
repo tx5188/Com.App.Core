@@ -1,0 +1,9 @@
+﻿using System;
+
+namespace Com.App.Service
+{
+    public class Class1
+    {
+        public int id{get;set;}
+    }
+}
