@@ -11,15 +11,20 @@ using System.Threading.Tasks;
 
 namespace Com.App.Data.Repository
 {
-    public abstract  class  Repository<TDbContext,T, Tkey> : IRepository<TDbContext, T, Tkey> where T : class, IEntity<Tkey>, new()
+    public  class  Repository<TDbContext,T, Tkey> : IRepository<TDbContext, T, Tkey> where T : class, IEntity<Tkey>, new()
         where TDbContext : DbContext
 
     {
-        private readonly IDbContextProvider<TDbContext> _dbContextProvider;
-        public virtual TDbContext Context => _dbContextProvider.GetDbContext();
-        public Repository(IDbContextProvider<TDbContext> dbContextProvider)
+        // private readonly IDbContextProvider<TDbContext> _dbContextProvider;
+        // public virtual TDbContext Context => _dbContextProvider.GetDbContext();
+        //  public Repository(IDbContextProvider<TDbContext> dbContextProvider)
+        //  {
+        //      _dbContextProvider = dbContextProvider;
+        //   }
+        public  TDbContext Context;
+        public Repository(TDbContext _context)
         {
-            _dbContextProvider = dbContextProvider;
+            Context = _context;
         }
 
         public virtual IQueryable<T> All => Context.Set<T>();

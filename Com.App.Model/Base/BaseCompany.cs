@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 namespace Com.App.Model.Base
 {
+     
     public class BaseCompany:Entity
     {
       //  public int Id { get; set; } 

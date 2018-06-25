@@ -22,7 +22,27 @@ namespace Com.App.Model
     {
 
     }
+    public abstract class TreeEntity : Entity
+    {
+        /// <summary>
+        /// 父节点名称
+        /// </summary>
+        public int ParentId { get; set; }
+        /// <summary>
+        /// 父节点名称
+        /// </summary>
+        public string ParentName { get; set; }
 
+        /// <summary>
+        /// 节点语义ID
+        /// </summary>
+        public string CascadeId { get; set; }
+
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public string Name { get; set; }
+    }
     /// <summary>
     /// Basic implementation of IEntity interface.
     /// An entity can inherit this class of directly implement to IEntity interface.

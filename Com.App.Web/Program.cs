@@ -14,9 +14,9 @@ namespace Com.App.Web
     {
         public static void Main(string[] args)
         {
-            var host = BuildWebHost(args);
-
-             //执行初始化数据代码，可以吧基层数据初始化到数据库中
+           // var host = BuildWebHost(args);
+            CreateWebHostBuilder(args).Build().Run();
+            //执行初始化数据代码，可以吧基层数据初始化到数据库中
             // using (var scope = host.Services.CreateScope())
             // {
             //     var services = scope.ServiceProvider;
@@ -31,14 +31,16 @@ namespace Com.App.Web
             //         logger.LogError(ex, "An error occurred while seeding the database.");
             //     }
             // }
-
-            host.Run();
-           // BuildWebHost(args).Run();
+         
+            //   host.Run();
+            // BuildWebHost(args).Run();
         }
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+           WebHost.CreateDefaultBuilder(args)
+               .UseStartup<Startup>();
 
         public static IWebHost BuildWebHost(string[] args) => 
-            WebHost.CreateDefaultBuilder(args)
-                
+            WebHost.CreateDefaultBuilder(args) 
                 .UseStartup<Startup>()
                 .Build();
     }

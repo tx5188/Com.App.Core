@@ -34,6 +34,7 @@ namespace Com.App.Web.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
+            
             return View(bll.GetList());
         }
 

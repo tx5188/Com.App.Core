@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Com.App.Data\Com.App.Data.csproj" />
+    <ProjectReference Include="..\Com.App.Common\Com.App.Common.csproj" />
+    <ProjectReference Include="..\Com.App.IBll\Com.App.IBll.csproj" />
+    <ProjectReference Include="..\Com.App.Model\Com.App.Model.csproj" />
+  </ItemGroup>
+
+</Project>

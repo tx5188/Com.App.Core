@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+   <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
+  </ItemGroup>
+ <ItemGroup>
+    <ProjectReference Include="..\Com.App.Data\Com.App.Data.csproj" />
+    <ProjectReference Include="..\Com.App.IBll\Com.App.IBll.csproj" />
+     
+  </ItemGroup>
+ <ItemGroup>
+   <Folder Include="Sys\" />
+ </ItemGroup>
+</Project>
