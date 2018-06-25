@@ -1,32 +1,41 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Text;
-namespace Com.App.Model.Sys
+
+namespace Com.App.Model.Base
 {
-    public class SysUserRole : Entity
+
+    /// <summary>
+    /// é‡‡æ ·ç‚¹ç®¡ç†
+    /// </summary>
+    [Table("BASE_SAMPPOINT")]
+    public class BaseSampPoint : Entity
     {
-     //   public int Id { get; set; }
-        public int UserId { get; set; }
-        public int RoleId { get; set; }
+        /// <summary>
+        /// é‡‡æ ·ç‚¹åç§°
+        /// </summary>
+        public string SampPointName { get; set; }
+        /// <summary>
+        /// é‡‡æ ·ç‚¹ç¼–å·
+        /// </summary>
+        public string SampPointCode { get; set; }
         public string Memo { get; set; }
         public int DeleteFlag { get; set; }
         /// <summary>
-        /// ĞÂÔöÈË
+        /// æ–°å¢äºº
         /// </summary>
         public string RecordMan { get; set; }
         /// <summary>
-        /// ĞÂÔöÈÕÆÚ
+        /// æ–°å¢æ—¥æœŸ
         /// </summary>
         public DateTime RecordDate { get; set; }
         /// <summary>
-        /// ¸üĞÂÈË
+        /// æ›´æ–°äºº
         /// </summary>
         public string UpdateMan { get; set; }
         /// <summary>
-        /// ¸üĞÂÈÕÆÚ
+        /// æ›´æ–°æ—¥æœŸ
         /// </summary>
         public DateTime UpdateDate { get; set; }
     }

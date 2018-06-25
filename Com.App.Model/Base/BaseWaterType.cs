@@ -1,43 +1,33 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Text;
+
 namespace Com.App.Model.Base
 {
-     
-    public class BaseCompany:Entity
+    /// <summary>
+    /// 水质类型管理
+    /// </summary>
+    [Table("BASE_WATERTYPE")]
+    public class BaseWaterType:Entity
     {
-      //  public int Id { get; set; } 
         /// <summary>
-        /// 公司名称
+        /// 采样点名称
         /// </summary>
-        /// <returns></returns> 
-        [Required]
-        [StringLength(50)]
-        public string CompanyName { get; set; }
+        public string WaterTypeName { get; set; }
         /// <summary>
-        /// 联系电话
+        /// 类型 1--水质分类 2-水质类型
         /// </summary>
-        /// <returns></returns>
-        public string Phone { get; set; }
-        
+        public int TypeId { get; set; }
         /// <summary>
-        /// 公司编号
+        /// 父节点
         /// </summary>
-        /// <returns></returns>
-        public string CompanyCode { get; set; }
+        public int ParentId { get; set; }
         /// <summary>
-        /// 联系地址
+        /// 排序
         /// </summary>
-        /// <returns></returns>
-        public string Address { get; set; }
-        /// <summary>
-        /// 联系人
-        /// </summary>
-        /// <returns></returns>
-        public string Contacts { get; set; }
+        public int WaterTypeOrder { get; set; }
+        public string Memo { get; set; }
         public int DeleteFlag { get; set; }
         /// <summary>
         /// 新增人

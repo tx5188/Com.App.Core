@@ -32,6 +32,22 @@ namespace Com.App.Model.Sys {
         public string Password { get; set; }
         public string Memo { get; set; }
         public int DeleteFlag { get; set; }
+        /// <summary>
+        /// 新增人
+        /// </summary>
+        public string RecordMan { get; set; }
+        /// <summary>
+        /// 新增日期
+        /// </summary>
+        public DateTime RecordDate { get; set; }
+        /// <summary>
+        /// 更新人
+        /// </summary>
+        public string UpdateMan { get; set; }
+        /// <summary>
+        /// 更新日期
+        /// </summary>
+        public DateTime UpdateDate { get; set; }
 
         [ForeignKey ("DeptId")]
         public virtual  BaseDeparment BaseDeparment { get; set; }

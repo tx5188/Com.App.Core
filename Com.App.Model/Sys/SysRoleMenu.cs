@@ -13,10 +13,10 @@ namespace Com.App.Model.Sys
         public int MenuId { get; set; }
 
         /// <summary>
-        /// 记录人ID
+        /// 记录人 
         /// </summary>
         /// <returns></returns>
-        public int RecordId { get; set; }
+        public string RecordMan { get; set; }
         /// <summary>
         /// 记录日期
         /// </summary>
