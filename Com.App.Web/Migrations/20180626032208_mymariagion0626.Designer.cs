@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Com.App.Web.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180625090332_NewField")]
-    partial class NewField
+    [Migration("20180626032208_mymariagion0626")]
+    partial class mymariagion0626
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,6 +29,10 @@ namespace Com.App.Web.Migrations
 
                     b.Property<string>("Address");
 
+                    b.Property<DateTime?>("CheckDate");
+
+                    b.Property<string>("CheckMan");
+
                     b.Property<string>("CompanyCode");
 
                     b.Property<string>("CompanyName")
@@ -41,11 +45,11 @@ namespace Com.App.Web.Migrations
 
                     b.Property<string>("Phone");
 
-                    b.Property<DateTime>("RecordDate");
+                    b.Property<DateTime?>("RecordDate");
 
                     b.Property<string>("RecordMan");
 
-                    b.Property<DateTime>("UpdateDate");
+                    b.Property<DateTime?>("UpdateDate");
 
                     b.Property<string>("UpdateMan");
 
@@ -59,6 +63,10 @@ namespace Com.App.Web.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("CheckDate");
+
+                    b.Property<string>("CheckMan");
 
                     b.Property<int>("CompanyId");
 
@@ -74,11 +82,11 @@ namespace Com.App.Web.Migrations
 
                     b.Property<int>("ParentId");
 
-                    b.Property<DateTime>("RecordDate");
+                    b.Property<DateTime?>("RecordDate");
 
                     b.Property<string>("RecordMan");
 
-                    b.Property<DateTime>("UpdateDate");
+                    b.Property<DateTime?>("UpdateDate");
 
                     b.Property<string>("UpdateMan");
 
@@ -95,11 +103,15 @@ namespace Com.App.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime?>("CheckDate");
+
+                    b.Property<string>("CheckMan");
+
                     b.Property<int>("DeleteFlag");
 
                     b.Property<string>("Memo");
 
-                    b.Property<DateTime>("RecordDate");
+                    b.Property<DateTime?>("RecordDate");
 
                     b.Property<string>("RecordMan");
 
@@ -107,7 +119,7 @@ namespace Com.App.Web.Migrations
 
                     b.Property<string>("SampPointName");
 
-                    b.Property<DateTime>("UpdateDate");
+                    b.Property<DateTime?>("UpdateDate");
 
                     b.Property<string>("UpdateMan");
 
@@ -122,19 +134,23 @@ namespace Com.App.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime?>("CheckDate");
+
+                    b.Property<string>("CheckMan");
+
                     b.Property<int>("DeleteFlag");
 
                     b.Property<string>("Memo");
 
                     b.Property<int>("ParentId");
 
-                    b.Property<DateTime>("RecordDate");
+                    b.Property<DateTime?>("RecordDate");
 
                     b.Property<string>("RecordMan");
 
                     b.Property<int>("TypeId");
 
-                    b.Property<DateTime>("UpdateDate");
+                    b.Property<DateTime?>("UpdateDate");
 
                     b.Property<string>("UpdateMan");
 
@@ -165,11 +181,11 @@ namespace Com.App.Web.Migrations
 
                     b.Property<string>("DicType");
 
-                    b.Property<DateTime>("RecordDate");
+                    b.Property<DateTime?>("RecordDate");
 
                     b.Property<string>("RecordMan");
 
-                    b.Property<DateTime>("UpdateDate");
+                    b.Property<DateTime?>("UpdateDate");
 
                     b.Property<string>("UpdateMan");
 
@@ -202,13 +218,13 @@ namespace Com.App.Web.Migrations
 
                     b.Property<int>("ParentId");
 
-                    b.Property<DateTime>("RecordDate");
+                    b.Property<DateTime?>("RecordDate");
 
                     b.Property<string>("RecordMan");
 
                     b.Property<string>("Target");
 
-                    b.Property<DateTime>("UpdateDate");
+                    b.Property<DateTime?>("UpdateDate");
 
                     b.Property<string>("UpdateMan");
 
@@ -229,13 +245,13 @@ namespace Com.App.Web.Migrations
 
                     b.Property<string>("Memo");
 
-                    b.Property<DateTime>("RecordDate");
+                    b.Property<DateTime?>("RecordDate");
 
                     b.Property<string>("RecordMan");
 
                     b.Property<int>("RoleName");
 
-                    b.Property<DateTime>("UpdateDate");
+                    b.Property<DateTime?>("UpdateDate");
 
                     b.Property<string>("UpdateMan");
 
@@ -252,11 +268,15 @@ namespace Com.App.Web.Migrations
 
                     b.Property<int>("MenuId");
 
-                    b.Property<DateTime>("RecordDate");
+                    b.Property<DateTime?>("RecordDate");
 
                     b.Property<string>("RecordMan");
 
                     b.Property<int>("RoleId");
+
+                    b.Property<DateTime?>("UpdateDate");
+
+                    b.Property<string>("UpdateMan");
 
                     b.HasKey("Id");
 
@@ -277,11 +297,11 @@ namespace Com.App.Web.Migrations
 
                     b.Property<string>("Password");
 
-                    b.Property<DateTime>("RecordDate");
+                    b.Property<DateTime?>("RecordDate");
 
                     b.Property<string>("RecordMan");
 
-                    b.Property<DateTime>("UpdateDate");
+                    b.Property<DateTime?>("UpdateDate");
 
                     b.Property<string>("UpdateMan");
 
@@ -309,13 +329,13 @@ namespace Com.App.Web.Migrations
 
                     b.Property<string>("Memo");
 
-                    b.Property<DateTime>("RecordDate");
+                    b.Property<DateTime?>("RecordDate");
 
                     b.Property<string>("RecordMan");
 
                     b.Property<int>("RoleId");
 
-                    b.Property<DateTime>("UpdateDate");
+                    b.Property<DateTime?>("UpdateDate");
 
                     b.Property<string>("UpdateMan");
 
@@ -332,7 +352,7 @@ namespace Com.App.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CheckDate");
+                    b.Property<DateTime?>("CheckDate");
 
                     b.Property<string>("CheckMan");
 
@@ -342,7 +362,7 @@ namespace Com.App.Web.Migrations
 
                     b.Property<DateTime>("PlanDate");
 
-                    b.Property<DateTime>("RecordDate");
+                    b.Property<DateTime?>("RecordDate");
 
                     b.Property<string>("RecordMan");
 
@@ -350,7 +370,7 @@ namespace Com.App.Web.Migrations
 
                     b.Property<string>("TaskFrom");
 
-                    b.Property<DateTime>("UpdateDate");
+                    b.Property<DateTime?>("UpdateDate");
 
                     b.Property<string>("UpdateMan");
 
@@ -396,7 +416,7 @@ namespace Com.App.Web.Migrations
 
                     b.Property<DateTime>("BegDate");
 
-                    b.Property<DateTime>("CheckDate");
+                    b.Property<DateTime?>("CheckDate");
 
                     b.Property<string>("CheckMan");
 
@@ -412,7 +432,7 @@ namespace Com.App.Web.Migrations
 
                     b.Property<string>("QualityControleOut");
 
-                    b.Property<DateTime>("RecordDate");
+                    b.Property<DateTime?>("RecordDate");
 
                     b.Property<string>("RecordMan");
 
@@ -432,7 +452,7 @@ namespace Com.App.Web.Migrations
 
                     b.Property<string>("TestRange");
 
-                    b.Property<DateTime>("UpdateDate");
+                    b.Property<DateTime?>("UpdateDate");
 
                     b.Property<string>("UpdateMan");
 
@@ -447,7 +467,7 @@ namespace Com.App.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CheckDate");
+                    b.Property<DateTime?>("CheckDate");
 
                     b.Property<string>("CheckMan");
 
@@ -455,7 +475,7 @@ namespace Com.App.Web.Migrations
 
                     b.Property<string>("Memo");
 
-                    b.Property<DateTime>("RecordDate");
+                    b.Property<DateTime?>("RecordDate");
 
                     b.Property<string>("RecordMan");
 
@@ -465,7 +485,7 @@ namespace Com.App.Web.Migrations
 
                     b.Property<int>("Status");
 
-                    b.Property<DateTime>("UpdateDate");
+                    b.Property<DateTime?>("UpdateDate");
 
                     b.Property<string>("UpdateMan");
 

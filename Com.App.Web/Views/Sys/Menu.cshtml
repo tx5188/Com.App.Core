@@ -1,0 +1,476 @@
+﻿@model IEnumerable<Com.App.Model.Sys.SysMenu>
+
+@{
+    ViewData["Title"] = "菜单管理";
+}
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light ">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase"> 菜单管理</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar" style="margin-bottom: 10px">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="btn-group">
+                                <button id="sample_editable_1_2_new" class="btn sbold green" data-toggle="modal" href="#basic" onclick="$('.modal-title').html('新增菜单');loadModelMenuSelect();">
+                                    <i class="fa fa-plus">&nbsp;新增菜单</i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered table-hover table-checkable order-column dataTable" role="grid" id="mytable">
+                    <thead>
+                        <tr>
+                            <th width="10%">序号</th>
+                            <th width="15%">菜单名称</th>
+                            <th width="15%">菜单编码</th>
+                            <th width="30%">菜单URL</th>
+                            <th width="15%">上级菜单</th>
+                            <th width="15%"> 操作</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="modal fade" id="basic" tabindex="-1" role="basic" data-backdrop="static" aria-hidden="true" style="margin-top: 160px">
+                    <div class="modal-dialog" style="width: 500px">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="resetFrom()"></button>
+                                <h4 class="modal-title">title</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form role="form" id="myform">
+                                    <div class="form-body" style="padding-left: 20px;padding-right: 20px;">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">
+                                                菜单编码
+                                                <span class="required" aria-required="true"> * </span>
+                                            </label>
+                                            <span id="menuCode_label" class="help-block" style="float: right;display: none"></span>
+                                            <div class="input-icon right">
+                                                <i id="menuCode_success_icon" class="fa fa-check" style="margin-top: 38px;display: none"></i>
+                                                <i id="menuCode_error_icon" class="fa fa-warning" style="margin-top: 38px;display: none"></i>
+                                                <input id="menuCode" type="text" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">
+                                                菜单名称
+                                                <span class="required" aria-required="true"> * </span>
+                                            </label>
+                                            <span id="menuName_label" class="help-block" style="float: right;display: none">此处为必填字段</span>
+                                            <div class="input-icon right">
+                                                <i id="menuName_success_icon" class="fa fa-check" style="margin-top: 38px;display: none"></i>
+                                                <i id="menuName_error_icon" class="fa fa-warning" style="margin-top: 38px;display: none"></i>
+                                                <input id="menuName" type="text" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">
+                                                菜单URL
+                                               
+                                            </label>
+                                          
+                                            <div class="input-icon right">
+                                                <i id="menuUrl_success_icon" class="fa fa-check" style="margin-top: 38px;display: none"></i>
+                                                <i id="menuUrl_error_icon" class="fa fa-warning" style="margin-top: 38px;display: none"></i>
+                                                <input id="menuUrl" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">上级菜单</label>
+
+                                            <select id="parentMenuSelect" class="form-control"></select>
+                                        </div>
+
+
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer" style="padding-right: 35px">
+                                <button type="button" class="btn dark btn-outline" data-dismiss="modal" onclick="resetFrom()">取消</button>
+                                <button type="button" class="btn green" onclick="checkForm()">提交</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+
+@section scripts
+    {
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="~/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <script src="~/js/home/loadmenu.js"></script>
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="~/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
+    <script>
+        var isvalidate = true;//表单校验标记
+        var updateId;  //用于存放修改角色的id
+        $(function () {
+            loadGrid();
+            bindBlur();
+        })
+
+        function loadGrid() {
+            var language = {
+                "sProcessing": "处理中...",
+                "sLengthMenu": "每页 _MENU_ 项",
+                "sZeroRecords": "没有匹配结果",
+                "sInfo": "第 _START_ 至 _END_ 条，共 _TOTAL_ 条。",
+                "sInfoEmpty": "当前显示第 0 至 0 项，共 0 项",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "搜索:",
+                "sUrl": "",
+                "sEmptyTable": "无菜单",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands": ",",
+                "oAria": {
+                    "sSortAscending": ": 以升序排列此列",
+                    "sSortDescending": ": 以降序排列此列"
+                }
+            };
+
+            //先去掉dataTable
+            //            $("#mytable").dataTable().fnClearTable(); //清空一下table
+            $("#mytable").dataTable().fnDestroy();
+            $("#mytable").dataTable({
+                language: language,
+                searching: false,
+                ordering: false,
+                paging: true,
+                serverSide: true,  //启用服务器端分页
+                // bStateSave: !0,
+                draw: false,
+                stateSave: false,
+                // lengthMenu: [[5, 10, 15], [5, 10, 15]],
+                pageLength: 15,
+                pagingType: "bootstrap_full_number",
+                //            columnDefs: [/*{orderable: !1, targets: [0]}, {searchable: !1, targets: [0]},*/ {className: "dt-right"}],
+                //            order: [[1, "asc"]],
+                //                autoWidth: false,  //禁用自动调整列宽
+                stripeClasses: ["odd", "even"],  //为奇偶行加上样式，兼容不支持CSS伪类的场合
+                processing: true,  //隐藏加载提示,自行处理
+                serverSide: true,  //启用服务器端分页
+                searching: false,  //禁用原生搜索
+                bLengthChange: false, //禁用改变每页显示数据数量
+                orderMulti: false,  //启用多列排序
+                order: [],  //取消默认排序查询,否则复选框一列会出现小箭头
+                renderer: "bootstrap",  //渲染样式：Bootstrap和jquery-ui
+                //                pagingType: "simple_numbers",  //分页样式：simple,simple_numbers,full,full_numbers
+                columnDefs: [{
+                    "targets": 'nosort',  //列的样式名
+                    "orderable": false    //包含上样式名‘nosort’的禁止排序
+                }],
+                ajax: function (data, callback, settings) {
+                    //                    alert(JSON.stringify(data))
+                    //封装请求参数
+                    var param = {};
+                    param.limit = data.length;//页面显示记录条数，在页面显示每页显示多少项的时候
+                    param.start = data.start;//开始的记录序号
+                    param.page = (data.start / data.length) + 1;//当前页码
+                    //ajax请求数据
+                    $.ajax({
+                        type: "post",
+                        url: "/Sys/getSysMenuList",
+                        //                        cache: false,  //禁用缓存
+                        data: param,  //传入组装的参数
+                        dataType: "json",
+                        success: function (result) {
+                            //                        alert(JSON.stringify(result.result))
+                            //console.log(result);
+                            //setTimeout仅为测试延迟效果
+                            setTimeout(function () {
+                                //封装返回数据
+                                var returnData = {};
+                                returnData.draw = data.draw;//这里直接自行返回了draw计数器,应该由后台返回
+                                returnData.recordsTotal = result.totalCount;//返回数据全部记录
+                                returnData.recordsFiltered = result.totalCount;//后台不实现过滤功能，每次查询均视作全部结果
+                                returnData.data = result.result;//返回的数据列表
+                                //console.log(returnData);
+                                //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
+                                //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
+                                callback(returnData);
+                            }, 200);
+                        }
+                    });
+                },
+                //列表表头字段
+                columns: [
+                    { "data": "Id" },
+                    { "data": "MenuName" },
+                    { "data": "MenuCode" },
+                    { "data": "Url" },
+                    { "data": "ParentName" },
+                ],
+                columnDefs: [{
+                    "targets": 5,//操作按钮目标列
+                    "data": null,
+                    "render": function (data, type, row) {
+                        //                    alert(JSON.stringify(data))
+                        var html = '<div class="btn-group">' +
+                            '<input type="hidden" value="' + data.ParentId + '"/>' +
+                            '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> &nbsp;&nbsp;操作列表&nbsp;&nbsp;' +
+                            '<i class="fa fa-angle-down"></i></button>' +
+                            '<ul class="dropdown-menu" role="menu" style="min-width: 140px;margin-left: 35px;">' +
+                            '<li><a class="updata_btn" id="' + data.Id + '" data-toggle="modal" href="#basic"><i class="fa fa-pencil-square-o"></i> 编辑 </a></li>' +
+                            '<li><a class="delete_btn" id="' + data.Id + '"><i class="fa fa-trash"></i> 删除 </a></li>' +
+                            '</ul> </div>';
+                        return html;
+                    }
+                }],
+                fnDrawCallback: function () {
+                    $(".sorting_asc").attr("class", "sorting_disabled")
+                    bindClickFn();
+                    this.api().column(0).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    })
+                }
+            });
+        }
+        //给操作按钮绑定点击事件
+        function bindClickFn() {
+            $(".updata_btn").click(function () {
+                loadModelMenuSelect($(this).parents("tr").find("input").val());
+                $(".modal-title").html("编辑菜单")
+                $("#menuName").val($(this).parents("tr").find("td").eq(1).html())
+                $("#menuCode").val($(this).parents("tr").find("td").eq(2).html())
+                $("#menuUrl").val($(this).parents("tr").find("td").eq(3).html())
+
+                //            alert($(this).parents("tr").find("input").val())
+                updateId = $(this).attr("id")
+            })
+
+            $(".delete_btn").click(function () {
+                var id = $(this).attr("id");
+                swal({
+                    title: "确认要删除该菜单？",
+                    text: "",
+                    type: "warning",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消",
+                }, function () {
+                    $.ajax({
+                        url: '/sys/deleteMenu',
+                        type: 'post',
+                        data: {
+                            id: id
+                        },
+                        dataType: 'json',
+                        async: true,
+                        success: function (data) {
+                            if (data.msg == "success") {
+                                swal("删除成功", "", "success");
+                                loadGrid();
+                            } else {
+                                swal("删除失败", data.msg, "error");
+                            }
+                        },
+                        /*error: function () {
+                         //                        notie.alert(3, '服务器异常', 2);
+                         }*/
+                    });
+                });
+            })
+
+        }
+
+        //表单元素绑定失焦校验
+        function bindBlur() {
+            $(".form-control").blur(function () {
+                var id = $(this).attr("id");
+                //非空校验
+                if ($("#" + id).attr("required") == "required") {
+                    if (null != $("#" + id).val() && "" != $("#" + id).val()) {
+                        showSuccess(id)
+                    } else {
+                        showError(id, "此处为必填字段")
+                        return
+                    }
+                }
+                if (id == "menuCode" && !/^[a-zA-Z0-9_\u4e00-\u9fa5]+$/.test($("#" + id).val())) {
+                    showError(id, "数字")
+                    return
+                }
+                if (id == "menuName" && !/^[a-zA-Z0-9_\u4e00-\u9fa5]+$/.test($("#" + id).val())) {
+                    showError(id, "中文、数字、字母和下划线")
+                    return
+                }
+                /*
+                if (id == "menuUrl" && !/^[a-zA-Z/]+$/.test($("#" + id).val())) {
+                    showError(id, "字母和/")
+                    return
+                }
+                */
+            })
+        }
+
+        //表单验证报错
+        function showError(id, msg) {
+            $("#" + id + "_label").html(msg);
+            $("#" + id + "_label").show();
+            $("#" + id + "_error_icon").show();
+            $("#" + id + "_success_icon").hide();
+            $("#" + id).parents(".form-group").attr("class", "form-group has-error")
+            isvalidate = false;
+        }
+
+        //表单验证通过
+        function showSuccess(id) {
+            $("#" + id + "_label").html("验证通过");
+            $("#" + id + "_label").show();
+            $("#" + id + "_error_icon").hide();
+            $("#" + id + "_success_icon").show();
+            $("#" + id).parents(".form-group").attr("class", "form-group has-success")
+        }
+
+        //表单重置
+        function resetFrom() {
+            $(".form-group.has-error").attr("class", "form-group");
+            $(".form-group.has-success").attr("class", "form-group");
+            $(".help-block").hide();
+            $(".input-icon i").hide();
+            $("#myform")[0].reset();
+        }
+
+        //表单提交时校验
+        function checkForm() {
+            isvalidate = true;
+            //校验所有元素
+            $(".form-control").blur();
+            if (isvalidate) {
+                if ($(".modal-title").html().trim() == "新增菜单") {
+                    $.ajax({
+                        url: '/sys/saveSysMenu',
+                        type: 'post',
+                        data: {
+                            menuCode: $("#menuCode").val(),
+                            menuName: $("#menuName").val(),
+                            menuUrl: $("#menuUrl").val(),
+                            parentId: $("#parentMenuSelect").val(),
+                            remark: $("#remark").val()
+                        },
+                        dataType: 'json',
+                        async: true,
+                        success: function (data) {
+                            if (data.msg == "success") {
+                                $('#basic').modal('hide');
+                                swal({
+                                    title: "新增成功",
+                                    text: "",
+                                    type: "success",
+                                    showCancelButton: false,
+                                    closeOnConfirm: true,
+                                    confirmButtonText: "确定",
+                                    cancelButtonText: "取消",
+                                }, function () {
+                                    resetFrom();
+                                    loadGrid();
+                                });
+                            } else {
+                               // swal("新增失败", data.msg, "error");
+                                if (data.msg == "菜单编码已存在")
+                                    showError("menuCode", "菜单编码已存在")
+                                if (data.msg == "菜单名称已存在")
+                                    showError("menuName", "菜单名称已存在")
+                            }
+                        },
+                        /*error: function () {
+                         //                        notie.alert(3, '服务器异常', 2);
+                         }*/
+                    });
+                } else if ($(".modal-title").html().trim() == "编辑菜单") {
+                    $.ajax({
+                        url: '/sys/updateMenu',
+                        type: 'post',
+                        data: {
+                            id: updateId,
+                            menuCode: $("#menuCode").val(),
+                            menuName: $("#menuName").val(),
+                            menuUrl: $("#menuUrl").val(),
+                            parentId: $("#parentMenuSelect").val()
+                        },
+                        dataType: 'json',
+                        async: true,
+                        success: function (data) {
+                            if (data.msg == "success") {
+                                $('#basic').modal('hide');
+                                swal({
+                                    title: "编辑成功",
+                                    text: "",
+                                    type: "success",
+                                    showCancelButton: false,
+                                    closeOnConfirm: true,
+                                }, function () {
+                                   // $('#basic').modal('hide');
+                                    resetFrom();
+                                    loadGrid();
+                                });
+                            } else {
+                               // swal("编辑失败", data.msg, "error");
+                                if (data.msg =="菜单编码已存在")
+                                    showError("menuCode", "菜单编码已存在")
+                                if (data.msg == "菜单名称已存在")
+                                    showError("menuName", "菜单名称已存在")
+                            }
+                        },
+                        /*error: function () {
+                         //                        notie.alert(3, '服务器异常', 2);
+                         }*/
+                    });
+                }
+            }
+        }
+
+        //加载model菜单下拉列表
+        function loadModelMenuSelect(selectId) {
+            $.ajax({
+                url: '/sys/GetListMenu',
+                type: 'post',
+                data: {
+                    parentId: 0
+                },
+                dataType: 'json',
+                async: true,
+                success: function (data) {
+
+                    //                alert(JSON.stringify(data))
+                    var htmlText = "<option value='0'>无</option>"
+                    for (var i in data) {
+                        htmlText += "<option value='" + data[i].Id + "'>" + data[i].MenuName + "</option>"
+                    }
+                    $("#parentMenuSelect").empty();
+                    $("#parentMenuSelect").append(htmlText)
+                    if (selectId) {
+                        $("#parentMenuSelect").val(selectId)
+                    } else {
+                        $("#parentMenuSelect").val(0)
+                    }
+
+                }
+            });
+
+        }
+    </script>
+}

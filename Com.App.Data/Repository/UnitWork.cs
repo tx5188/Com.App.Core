@@ -156,6 +156,7 @@ namespace Com.App.Data.Repository
         public void ExecuteSql(string sql)
         {
             Context.Database.ExecuteSqlCommand(sql);
+            
         }
 
         public IQueryable<U> Find<U>(Expression<Func<U, bool>> exp = null) where U : class

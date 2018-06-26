@@ -37,24 +37,24 @@ namespace Com.App.Web
                 options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+           // services.AddDbContext<Data.EntityFramework.MyDbContext>(options=>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b=>b.MigrationsAssembly("Com.App.Web")));
             services.AddDbContext<Data.EntityFramework.MyDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Com.App.Web")));
-            services.AddDbContext<Data.EntityFramework.EfDbContext>(options =>
-                      options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Com.App.Web")));
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), c => c.UseRowNumberForPaging()));
+            //  services.AddDbContext<Data.EntityFramework.EfDbContext>(options =>
+            //            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Com.App.Web")));
 
             //依赖注入
             //DIBllRegister bllRegister = new DIBllRegister();
-           // bllRegister.DIRegister(services);
+            // bllRegister.DIRegister(services);
             services.AddMemoryCache();
             services.Configure<IISOptions>(option =>
             {
 
             });
-
+            services.AddSession();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //使用AutoFac进行注入
-             return new AutofacServiceProvider(AutofacExt.InitAutofac(services));
+            return new AutofacServiceProvider(AutofacExt.InitAutofac(services));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,11 +71,12 @@ namespace Com.App.Web
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Login}/{id?}");
+                    template: "{controller=home}/{action=login}/{id?}");
             });
         }
     }

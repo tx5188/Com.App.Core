@@ -71,13 +71,13 @@ namespace Com.App.Model.Task
         /// </summary>
         public string TechnicalLeader { get; set; }
         /// <summary>
-        /// 创建人
+        /// 新增人
         /// </summary>
         public string RecordMan { get; set; }
         /// <summary>
-        /// 创建日期
+        /// 新增日期
         /// </summary>
-        public DateTime RecordDate { get; set; }
+        public DateTime? RecordDate { get; set; }
         /// <summary>
         /// 更新人
         /// </summary>
@@ -85,7 +85,7 @@ namespace Com.App.Model.Task
         /// <summary>
         /// 更新日期
         /// </summary>
-        public DateTime UpdateDate { get; set; }
+        public DateTime? UpdateDate { get; set; }
 
         /// <summary>
         /// 审核人
@@ -94,7 +94,7 @@ namespace Com.App.Model.Task
         /// <summary>
         /// 审核日期
         /// </summary>
-        public DateTime CheckDate { get; set; }
+        public DateTime? CheckDate { get; set; }
         /// <summary>
         /// 备注
         /// </summary>

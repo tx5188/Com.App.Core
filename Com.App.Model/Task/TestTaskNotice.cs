@@ -39,11 +39,11 @@ namespace Com.App.Model.Task
         /// <summary>
         /// 创建人（技术质量负责人）
         /// </summary>
-        public string RecordMan { get; set; }
+        public string RecordMan { get; set; } 
         /// <summary>
-        /// 创建日期
+        /// 新增日期
         /// </summary>
-        public DateTime RecordDate { get; set; }
+        public DateTime? RecordDate { get; set; }
         /// <summary>
         /// 更新人
         /// </summary>
@@ -51,14 +51,15 @@ namespace Com.App.Model.Task
         /// <summary>
         /// 更新日期
         /// </summary>
-        public DateTime UpdateDate { get; set; } 
+        public DateTime? UpdateDate { get; set; }
+
         /// <summary>
-        /// 分析测试室负责人
+        /// 审核人
         /// </summary>
         public string CheckMan { get; set; }
         /// <summary>
-        /// 审核日期 
+        /// 审核日期
         /// </summary>
-        public DateTime CheckDate { get; set; }
+        public DateTime? CheckDate { get; set; }
     }
 }

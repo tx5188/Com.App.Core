@@ -1,4 +1,4 @@
-常用命令
+﻿常用命令
 1、增加包
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer -V 2.0.0
 
@@ -26,3 +26,7 @@ dotnet add packag Oracle.ManagedDataAccess.EntityFramework.dll
 还原好以后就可以使用dotnet ef 命令。
 
 在命令提示符中首先输入dotnet ef migrations add MyFirstMigration，然后再输入dotnet ef database update。
+
+这里我们只是启用了迁移，但不是自动迁移。从提示信息中我们可以看到若要启用自动迁移则要删除Migrations文件夹并在Packge Manager Console中输入
+
+Enable-Migrations –EnableAutomaticMigrations命令或者在Migrations文件夹的Configuration.cs文件中设置AutomaticMigrationsEnabled属性为true即可。

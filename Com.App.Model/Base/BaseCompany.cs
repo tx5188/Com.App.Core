@@ -46,7 +46,7 @@ namespace Com.App.Model.Base
         /// <summary>
         /// 新增日期
         /// </summary>
-        public DateTime RecordDate { get; set; }
+        public DateTime? RecordDate { get; set; }
         /// <summary>
         /// 更新人
         /// </summary>
@@ -54,6 +54,15 @@ namespace Com.App.Model.Base
         /// <summary>
         /// 更新日期
         /// </summary>
-        public DateTime UpdateDate { get; set; }
+        public DateTime? UpdateDate { get; set; }
+
+        /// <summary>
+        /// 审核人
+        /// </summary>
+        public string CheckMan { get; set; }
+        /// <summary>
+        /// 审核日期
+        /// </summary>
+        public DateTime? CheckDate { get; set; }
     }
 }

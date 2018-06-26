@@ -14,7 +14,8 @@ namespace Com.App.Web
     {
         public static void Main(string[] args)
         {
-           // var host = BuildWebHost(args);
+           
+            // var host = BuildWebHost(args);
             CreateWebHostBuilder(args).Build().Run();
             //执行初始化数据代码，可以吧基层数据初始化到数据库中
             // using (var scope = host.Services.CreateScope())

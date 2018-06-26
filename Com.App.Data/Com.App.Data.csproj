@@ -3,6 +3,9 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="EntityFramework\EfDbContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Com.App.Common\Com.App.Common.csproj" />
     <ProjectReference Include="..\Com.App.Model\Com.App.Model.csproj" />
   </ItemGroup>

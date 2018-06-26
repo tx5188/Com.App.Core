@@ -39,7 +39,7 @@ namespace Com.App.Model.Sys {
         /// <summary>
         /// 新增日期
         /// </summary>
-        public DateTime RecordDate { get; set; }
+        public DateTime? RecordDate { get; set; }
         /// <summary>
         /// 更新人
         /// </summary>
@@ -47,7 +47,7 @@ namespace Com.App.Model.Sys {
         /// <summary>
         /// 更新日期
         /// </summary>
-        public DateTime UpdateDate { get; set; }
+        public DateTime? UpdateDate { get; set; }
 
         [ForeignKey ("DeptId")]
         public virtual  BaseDeparment BaseDeparment { get; set; }

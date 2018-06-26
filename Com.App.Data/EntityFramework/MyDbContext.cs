@@ -11,7 +11,7 @@ namespace Com.App.Data.EntityFramework
     public class MyDbContext : DbContext
     {
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
-        public DbSet<Model.Sys.SysUser> SysUser { get; set; }  
+        public DbSet<Model.Sys.SysUser> SysUser { get; set; }
         public DbSet<Model.Sys.SysMenu> SysMenu { get; set; }
         public DbSet<Model.Sys.SysRole> SysRole { get; set; }
         public DbSet<Model.Sys.SysUserRole> SysUserRole { get; set; }
@@ -19,7 +19,7 @@ namespace Com.App.Data.EntityFramework
         public DbSet<Model.Sys.SysDictionary> SysDictionary { get; set; }
         /****************************************************************/
         public DbSet<Model.Base.BaseDeparment> BaseDeparment { get; set; }
-        public DbSet<Model.Base.BaseCompany> BaseCompany { get; set; } 
+        public DbSet<Model.Base.BaseCompany> BaseCompany { get; set; }
         public DbSet<Model.Base.BaseSampPoint> BaseSampPoint { get; set; }
         public DbSet<Model.Base.BaseWaterType> BaseWaterType { get; set; }
         /****************************************************************/
@@ -28,10 +28,6 @@ namespace Com.App.Data.EntityFramework
         public DbSet<Model.Task.TaskTestPlan> TaskTestPlan { get; set; }
         public DbSet<Model.Task.TestTaskNotice> TestTaskNotice { get; set; }
         public DbSet<Model.Task.TestTaskNoticeDetail> TestTaskNoticeDetail { get; set; }
-   
-
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 

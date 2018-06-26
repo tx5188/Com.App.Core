@@ -29,7 +29,7 @@ namespace Com.App.Bll.Sys
         public List<SysUser> GetList()
         {
             Expression<Func<SysUser, object>>[] includeProperties=new Expression<Func<SysUser, object>>[2];
-           
+
             List<SysUser> list = Repository. AllIncluding(x=>x.BaseDeparment ,x=>x.BaseDeparment.BaseCompany).ToList();
             List<SysMenu> listmenu = UnitWork.Find<SysMenu>(null).ToList();
            // List<SysUser> list = context2.SysUser.ToList();
