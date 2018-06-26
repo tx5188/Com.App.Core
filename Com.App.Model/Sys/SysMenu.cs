@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 namespace Com.App.Model.Sys
 {
+    /// <summary>
+    /// 菜单表
+    /// </summary>
     public class SysMenu : Entity
     {
        // public int Id { get; set; }

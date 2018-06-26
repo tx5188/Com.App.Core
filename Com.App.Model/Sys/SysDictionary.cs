@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Com.App.Model.Sys
 {
+    /// <summary>
+    /// 数据字典
+    /// </summary>
     [Table("SYS_DICTIONARY")]
     public class SysDictionary : Entity
     {
