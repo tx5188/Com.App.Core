@@ -1,0 +1,321 @@
+﻿
+<div class="row">
+    <div class="col-md-3">
+        <div class="portlet green box">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-cogs"></i>组织列表
+                </div>
+            </div>
+            <input id="departId" hidden="">
+            <div class="portlet-body" style="overflow: scroll;max-height: 600px;min-height: 600px">
+                
+                <div id="jstree" class="col-md-12">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="portlet light ">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase" id="test"> 部门管理</span>
+                </div>
+            </div>
+
+            <div class="portlet-body form">
+                <div class="form-body" style="margin-top: -10px;height: 76px;border-bottom: solid 1px #eee;">
+                    <div class="form-group" style="margin-bottom: -40px">
+                        <form id="searchForm" class="mt-repeater form-horizontal" onsubmit="return submitParams()">
+                            <div data-repeater-list="group-a">
+                                <div data-repeater-item="" class="mt-repeater-item" style="border-bottom: 0;padding-bottom:0;margin-bottom:0">
+                                    <!--<input id="search_drpartId" type="hidden">-->
+                                    <div class="mt-repeater-input">
+                                        <input id="searchTerminalSN" type="text" name="text-input" class="form-control" placeholder="请输入员工姓名">
+                                    </div>
+
+                                    <div class="mt-repeater-input">
+                                        <div class="mt-repeater-input">
+                                            <button type="submit" id="search_btn" class="btn btn-success">
+                                                <i class="fa fa-search"></i> 搜索
+                                            </button>&nbsp;&nbsp;
+                                        </div>
+                                    </div>
+
+                                    <input id="search_deptId" type="hidden">
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-12">
+                <a class="btn red" onclick="adduser()"> 新增人员 </a>
+            </div>
+            <div id="mytable_wrapper" class="dataTables_wrapper no-footer">
+                <div class="row"><div class="col-md-6 col-sm-6"></div><div class="col-md-6 col-sm-6"></div><div id="mytable_processing" class="dataTables_processing" style="display: none;">处理中...</div></div><div class="table-scrollable">
+                    <table class="table table-striped table-bordered table-hover table-checkable order-column no-footer dataTable" role="grid" id="mytable" aria-describedby="mytable_info" style="width: 1325px;">
+                        <thead>
+                            <tr role="row">
+                                <th width="10%" class="sorting_disabled" tabindex="0" aria-controls="mytable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="序号: activate to sort column descending" style="width: 106px;">序号</th>
+                                <th width="15%" class="sorting_disabled" tabindex="0" aria-controls="mytable" rowspan="1" colspan="1" aria-label="部门编号: activate to sort column ascending" style="width: 167px;">员工姓名</th>
+                                <th width="15%" class="sorting_disabled" tabindex="0" aria-controls="mytable" rowspan="1" colspan="1" aria-label="部门电话: activate to sort column ascending" style="width: 167px;">员工电话</th>
+                                <th width="15%" class="sorting_disabled" tabindex="0" aria-controls="mytable" rowspan="1" colspan="1" aria-label="所属组织: activate to sort column ascending" style="width: 167px;">所属部门</th>
+                                <th width="15%" class="" tabindex="0" aria-controls="mytable" rowspan="1" colspan="1" aria-label="操作: activate to sort column ascending" style="width: 150px;">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tab"></tbody>
+                    </table>
+                </div><div class="row">
+                    <div class="col-md-5 col-sm-5"><div class="dataTables_info" id="mytable_info" role="status" aria-live="polite"> 共 <font id="countTab"></font> 条 </div></div>
+                    <div class="col-md-7 col-sm-7"><div class="dataTables_paginate paging_bootstrap_full_number" id="mytable_paginate"><ul class="pagination" style="visibility: visible;"><li class="prev"><a href="#" title="First"><i class="fa fa-angle-double-left"></i></a></li><li class="prev"><a href="#" title="Prev"><i class="fa fa-angle-left"></i></a></li><li><a href="#">1</a></li><li class="active"><a href="#">2</a></li><li><a href="#">3</a></li><li><a href="#">4</a></li><li><a href="#">5</a></li><li class="next"><a href="#" title="Next"><i class="fa fa-angle-right"></i></a></li><li class="next"><a href="#" title="Last"><i class="fa fa-angle-double-right"></i></a></li></ul></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>新增人员
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="margin:0px 0px 30px 50px">
+                    <label class="col-md-3 control-label">姓名</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control input-inline input-medium" placeholder="请输入员工姓名" id="tele">
+                    </div>
+                </div>
+                <br />
+                <div class="form-group" style="margin:0px 0px 30px 50px">
+                    <label class="col-md-3 control-label">电话号码</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control input-inline input-medium" placeholder="请输入电话号码" id="tele">
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group" style="margin:0px 0px 30px 50px;">
+                    <label class="col-md-3 control-label">所属部门</label>
+                    <div class="col-md-9">
+                        <select class="form-control" style="width:67%;" id="type"></select>
+                    </div>
+                </div>
+                <br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">取消</button>
+                <button type="button" class="btn green" onclick="saveNewMan();">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade draggable-modal ui-draggable" id="update" tabindex="-1" role="basic" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>修改信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="margin:0px 0px 30px 50px">
+                    <label class="col-md-3 control-label">员工姓名</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control input-inline input-medium" placeholder="请输入修改的员工姓名" id="userName">
+                    </div>
+                </div>
+                <br />
+                <div class="form-group" style="margin:0px 0px 30px 50px">
+                    <label class="col-md-3 control-label">员工电话</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control input-inline input-medium" placeholder="请输入修改的员工电话" id="usertele">
+                    </div>
+                </div>
+                <br />
+                <div class="form-group" style="margin:0px 0px 30px 50px">
+                    <label class="col-md-3 control-label">所属部门</label>
+                    <div class="col-md-9">
+                        <select class="form-control" style="width:67%;" id="usertype"></select>
+                    </div>
+                </div>
+                <br />
+                <div class="modal-footer">
+                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn green" onclick="updateNewMan();">确认修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section scripts
+    {
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="~/assets/global/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <script src="~/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/js/home/loadmenu.js"></script>
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="~/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jstree/dist/jstree.min.js"></script>
+
+    <script type="text/javascript">
+
+        var typePeople = ["人事部", "市场部", "研发部", "测试部", "运维部", "实施部", "销售部"];
+        var intCount = 1;//控制下拉菜单
+        //初始化部门结构
+        $("#jstree").jstree({
+            'core': {
+                'data': [
+                    {
+                        "text": "部门结构",
+                        "children": [
+                            { "text": typePeople[0] },
+                            { "text": typePeople[1] },
+                            { "text": typePeople[2] },
+                            { "text": typePeople[3] },
+                            { "text": typePeople[4] },
+                            { "text": typePeople[5] },
+                            { "text": typePeople[6] },
+                        ],
+                    }
+                ],
+                'state': { "opened": true }
+            }
+        });
+
+        $("#jstree").on("changed.jstree", function (e, data) {
+            //获取选中节点的值
+            console.log(data.instance.get_node(data.selected[0]).text);
+        });
+
+        var num = 4;//初始化人员编号
+        var tabData = [
+            {
+                "id": 1,
+                "bmbh": "Java",
+                "bmdh": "0838-6214568",
+                "sszz": "市场部"
+            },
+            {
+                "id": 2,
+                "bmbh": "Bob",
+                "bmdh": "0838-6411611",
+                "sszz": "测试部"
+            },
+            {
+                "id": 3,
+                "bmbh": "Oracle",
+                "bmdh": "0838-9414119",
+                "sszz": "销售部"
+            },
+            {
+                "id": 4,
+                "bmbh": "Weblogic",
+                "bmdh": "0838-6414113",
+                "sszz": "研发部"
+            }
+        ]
+
+        $(document).ready(function () {
+            appendTab(tabData);
+            appendNewType();
+        });
+        //拼接表格
+        function appendTab(NeedData) {
+            $("#tab").empty();
+            for (var i in tabData) {
+                $("#tab").append("<tr><td>" + tabData[i].id + "</td><td>" + tabData[i].bmbh + "</td><td>" + tabData[i].bmdh + "</td><td>" + tabData[i].sszz + "</td>" +
+                    // "<td><div class='btn-group' id='tabID-"+i+"'>"+
+                    //     "<button class='btn btn-xs green dropdown-toggle' type='button' data-toggle='dropdown' aria-expanded='true'> Actions"+
+                    //     "<i class='fa fa-angle-down'></i></button><ul class='dropdown-menu' role='menu'>"+
+                    //     "<li><a href='javascript:;'><i class='icon-docs'></i> 修改 </a></li>"+
+                    //     "<li class='divider'> </li><li><a href='javascript:;'><i class='icon-tag'></i> 删除 </a></li></ul></div></td>"+
+                    "<td><span class='btn btn-primary' data-toggle='modal' data-target='#update'  id='updateYes' onclick='getFrameUpdate()'>修改</span>" +
+                    "<button class='btn btn-primary mt-sweetalert btn-danger' data-title='确认删除吗?' data-type='warning' data-allow-outside-click='true' data-show-confirm-button='true' data-show-cancel-button='true' data-cancel-button-class='btn-danger' data-cancel-button-text='同意删除' data-confirm-button-text='返回' data-confirm-button-class='btn-info'>删除</button></td>" +
+                    "</tr>");
+            }
+            $("#countTab").text(tabData.length);
+        }
+        //控制按钮下拉菜单
+        $("#tabID-0").click(function () {
+            console.log(intCount);
+            intCount++;
+            if (intCount % 2 == 0) {
+                $("#tabID-0").removeClass();
+                $("#tabID-0").addClass("btn-group open");
+            } else {
+                $(this).removeClass();
+                $(this).addClass("btn-group");
+            }
+
+        });
+        //新增人员下拉菜单
+        function appendNewType() {
+            for (var i = 0; i < typePeople.length; i++) {
+                $("#type").append("<option>" + typePeople[i] + "</option>");
+                $("#usertype").append("<option>" + typePeople[i] + "</option>");
+            }
+        }
+        function adduser() {
+
+            $("#basic").modal('show');
+        }
+        //添加新用户
+        function saveNewMan() {
+            num++;
+            var newManInfo = {
+                "id": num,
+                "bmbh": $("#wid").val(),
+                "bmdh": $("#tele").val(),
+                "sszz": $("#type").val()
+            };
+            tabData.push(newManInfo);
+            console.log($("#wid").val() + "已存入TabData数组");
+            appendTab(tabData);
+            $("#basic").modal('hide');
+            $(".page-container-bg-solid").modal('hide');
+        }
+
+        //更新人员
+        function getFrameUpdate() {
+            var oldName = $("#updateYes").parent().prev().prev().prev().text();
+            var oldTele = $("#updateYes").parent().prev().prev().text();
+            var oldType = $("#updateYes").parent().prev().text();
+            console.log($("#updateYes").parent().parent().html());
+            console.log("原来信息为" + oldName + " ：" + oldTele + " ：" + oldType);
+        }
+        function updateNewMan() {
+            var newName = $("#userName").val();
+            var newTele = $("#usertele").val();
+            var newType = $("#usertype").val();
+            for (var i in tabData) {
+                if (tabData[i].bmbh == "newName") {
+
+                }
+            }
+        }
+    </script>
+
+}
+
+
+
+
+
+
+
+

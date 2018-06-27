@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 
 namespace Com.App.Web.Controllers
 {
-    
+
     public class HomeController : Controller
     {
 
@@ -28,26 +28,46 @@ namespace Com.App.Web.Controllers
         }
         public IActionResult Index()
         {
-            //return View (new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+         
             return View();
+            //return View (new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+
         }
         public IActionResult Login()
         {
+            if (ModelState.IsValid)
+            {
+                LoginModel mode = new LoginModel();
+                mode.UserName = "admin";
+                if (mode.UserName == "admin")
+                {
+                    //记录Session
+                    HttpContext.Session.Set("CurrentUser", ByteConvertHelper.Object2Bytes(mode));
+                    //跳转到系统首页
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+
+                    ModelState.AddModelError("", "用户名或密码错误。");
+                    return View();
+                }
+            }
             return View();
         }
-         
+
         [HttpGet]
         public string loadSysMenu(string parentid)
         {
             List<Model.Sys.SysMenu> list = new List<Model.Sys.SysMenu>();
             list = bllmenu.GetListMenu(parentid);
-            var s=  JsonConvert.SerializeObject(list);
+            var s = JsonConvert.SerializeObject(list);
             return s;
         }
         [HttpGet]
         public void SetMenuSession(Model.Sys.SysUser user)
-        { 
-            HttpContext.Session.Set("MenuSession", ByteConvertHelper.Object2Bytes(user)); 
+        {
+            HttpContext.Session.Set("MenuSession", ByteConvertHelper.Object2Bytes(user));
         }
 
         public IActionResult Error()

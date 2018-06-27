@@ -1,0 +1,107 @@
+﻿@model IEnumerable<Com.App.Model.Base.BaseDeparment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DeptName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeptCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepteType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeptLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeleteFlag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RecordMan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RecordDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateMan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckMan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BaseCompany)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeptName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeptCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepteType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeptLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeleteFlag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecordMan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecordDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateMan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckMan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BaseCompany.CompanyName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

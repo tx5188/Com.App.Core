@@ -13,6 +13,7 @@ using Com.App.Bll;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Autofac.Extensions.DependencyInjection;
+using Com.App.Web.Common;
 
 namespace Com.App.Web
 {
@@ -52,6 +53,8 @@ namespace Com.App.Web
 
             });
             services.AddSession();
+            //登录拦截服务
+            services.AddScoped<LoginActionFilter>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //使用AutoFac进行注入
             return new AutofacServiceProvider(AutofacExt.InitAutofac(services));

@@ -32,6 +32,7 @@ namespace Com.App.Model.Sys {
         public string Password { get; set; }
         public string Memo { get; set; }
         public int DeleteFlag { get; set; }
+        public int IsAdmin { get; set; }
         /// <summary>
         /// 新增人
         /// </summary>

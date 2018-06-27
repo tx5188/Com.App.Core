@@ -1,9 +1,12 @@
-﻿using Com.App.Data;
+﻿using Com.App.Common;
+using Com.App.Data;
 using Com.App.Data.EntityFramework;
 using Com.App.Data.Repository;
 using Com.App.IBll.Sys;
 using Com.App.Interface.dal;
+using Com.App.Model.Base;
 using Com.App.Model.Sys;
+using Com.App.Web.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,8 +27,12 @@ namespace Com.App.Bll.Sys
             context = dbContextProvider.GetDbContext();
        
         }
-        
-       
+
+        public TableData DelUser(SysMenu param)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<SysUser> GetList()
         {
             Expression<Func<SysUser, object>>[] includeProperties=new Expression<Func<SysUser, object>>[2];
@@ -36,6 +43,30 @@ namespace Com.App.Bll.Sys
             //List<SysUser> list2= context.SysUser.ToList();
             return list;
         }
- 
+
+        public TableData getSysUserList(Param param, BaseDeparment dept)
+        {
+            throw new NotImplementedException();
+        }
+
+        public SysUser GetUserById(int userid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public SysUser GetUserByLogin(string userno, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public TableData SaveUser(SysMenu param)
+        {
+            throw new NotImplementedException();
+        }
+
+        public TableData UpdaUser(SysMenu param)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,0 +1,99 @@
+﻿@model Com.App.Model.Base.BaseDeparment
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BaseDeparment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DeptName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeptName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ParentId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ParentId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeptCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeptCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DepteType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DepteType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeptLevel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeptLevel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeleteFlag)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeleteFlag)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RecordMan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RecordMan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RecordDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RecordDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateMan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpdateMan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpdateDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckMan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CheckMan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CheckDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BaseCompany)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BaseCompany.CompanyName)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

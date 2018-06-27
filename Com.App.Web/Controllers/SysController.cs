@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Com.App.Common;
 using Com.App.IBll.Sys;
+using Com.App.Web.Common;
 using Com.App.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -11,7 +12,8 @@ using Newtonsoft.Json.Converters;
 
 namespace Com.App.Web.Controllers
 {
-    public class SysController : Controller
+    [ServiceFilter(typeof(LoginActionFilter))]
+    public class SysController :  Controller 
 
     {
         private IBll_SysMenu bllmenu;
